@@ -154,5 +154,8 @@ static const engine_t ENG_PHONK = {
         {"SUB", F_PCT, 0, 127, 0, 0, 0},
     },
     PHONK_PRESETS, sizeof(PHONK_PRESETS) / sizeof(PHONK_PRESETS[0]), 1, phonk_note_on, phonk_render,
-    0x881F, {P_E3, P_E6, P_E2, P_E5}, 0, 0, phonk_desc,   /* the knobs: CUT, DRV, CRSH, TONE (SAW / METL) */
+    0x881F, {P_E3, P_E6, P_E2, P_E5},   /* the knobs: CUT, DRV, CRSH, TONE (SAW / METL) */
+    4,      /* at most 4 voices a part: a voice costs about twice an ANALOG one (two clips, a crusher), so the cap
+             * keeps a full part under the heaviest SLOOP engine's 8 (tests/regress.c, the heaviest preset per engine) */
+    0, phonk_desc,
 };
