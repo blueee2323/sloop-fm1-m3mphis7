@@ -28,6 +28,7 @@ static inline int32_t soft_knee(int32_t y, int32_t k)   /* linear up to k, then 
 #include "eng_fm6.c"            /* FM6: 6-operator FM, msfa ported (fm6_core.c, Apache-2.0); SLOOP 2.4 */
 #include "eng_phys.c"           /* PHYS: physical models, from Felucca 1.0 (DaisySP, Rings: MIT); SLOOP 2.5 */
 #include "eng_noise.c"          /* NOISE: from Felucca 1.0; SLOOP 2.5 */
+#include "eng_phonk.c"          /* PHONK: cowbell, chimes and dirty 808s (M3mphis7) */
 
 typedef union {
     gr_part_t grain;
@@ -88,7 +89,9 @@ static const engine_t *const ENGINES[NENGINES] = {&ENG_ANALOG, &ENG_DIGITAL, &EN
 #if FELUCCA_SLICE
                                                     &ENG_SLICE,
 #endif
+                                                    &ENG_PHONK,
 };
+_Static_assert(ENGI_PHONK == NENGINES - 1u, "PHONK is the last engine");
 _Static_assert(ENGI_FM6 == 9u, "ENGINES[ENGI_FM6] is FM6");
 _Static_assert(ENGI_GRAIN == 8u && ENGI_PHYS == 10u && ENGI_NOISE == 11u && ENGI_SLICE == 12u, "ENGINES[] order");
 
